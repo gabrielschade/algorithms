@@ -4,8 +4,8 @@ let helloFunction() =
     printf "Hello"
 
 let rec sum list =
-    match list with
-    | [] -> 0
+    match list with 
+    | [] -> 0 
     | head::tail -> head + sum tail
 
 let tailRecursionSum list =
