@@ -52,6 +52,14 @@ class Queue{
         return this._first.value;
     }
 
+    toArray(){
+        let array = [];
+        while(this._size > 0){
+            array.push(this.dequeue());
+        }
+        return array;
+    }
+
     get size(){
         return this._size;
     }
@@ -63,4 +71,6 @@ class Queue{
     get headAndTail(){
         return [this.dequeue(), this];
     }
+
+
 }
