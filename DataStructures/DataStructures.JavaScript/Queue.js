@@ -8,6 +8,10 @@ class QueueNode{
         this._next = value;
     }
 
+    get next(){
+        return this._next;
+    }
+
     get value(){
         return this._value;
     }
@@ -15,13 +19,14 @@ class QueueNode{
 
 class Queue{
     constructor(value){
-        if(value === undefined){
+        this._size = 0;
+
+        if (value === undefined){
             this._first = null;
             this._last = null;
         }
         else{
-            this._first = new QueueNode(value);
-            this._last = this._first;
+            this.enqueue(value);
         }
     }
 
@@ -33,22 +38,29 @@ class Queue{
             this._last.next = newNode;
         }
         this._last = newNode;
+        this._size++;
     }
 
     dequeue(){
-        if(this.empty) throw new Error("Empty Queue");
         let itemToRemove = this._first;
-        this._first = itemToRemove._next;
+        this._first = itemToRemove.next;
+        this._size--;
         return itemToRemove.value;
     }
 
     peek(){
-        if(this.empty) throw new Error("Empty Queue");
-
         return this._first.value;
     }
 
+    get size(){
+        return this._size;
+    }
+
     get empty(){
-        return this._first === null;
+        return this.size === 0;
+    }
+
+    get headAndTail(){
+        return [this.dequeue(), this];
     }
 }
