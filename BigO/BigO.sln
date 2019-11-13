@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BigO.CSharp", "BigO.CSharp\
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "BigO.FSharp", "BigO.FSharp\BigO.FSharp.fsproj", "{9D74DC58-0415-465C-BBF3-19B40FF9A320}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArraysAndStrings", "ArraysAndStrings\ArraysAndStrings.csproj", "{CC3E0351-0FF6-41FD-B93C-4F1940AF41E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedList", "LinkedList\LinkedList.csproj", "{0F889372-F116-41A9-B646-8C42DBCF5BE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{9D74DC58-0415-465C-BBF3-19B40FF9A320}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D74DC58-0415-465C-BBF3-19B40FF9A320}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D74DC58-0415-465C-BBF3-19B40FF9A320}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC3E0351-0FF6-41FD-B93C-4F1940AF41E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC3E0351-0FF6-41FD-B93C-4F1940AF41E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC3E0351-0FF6-41FD-B93C-4F1940AF41E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC3E0351-0FF6-41FD-B93C-4F1940AF41E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F889372-F116-41A9-B646-8C42DBCF5BE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F889372-F116-41A9-B646-8C42DBCF5BE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F889372-F116-41A9-B646-8C42DBCF5BE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F889372-F116-41A9-B646-8C42DBCF5BE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,107 +1,111 @@
-    class LinkedListNode {
-        constructor(value) {
-            this._value = value;
-            this._next = null;
-        }
+class LinkedListNode {
+    constructor(value) {
+        this._value = value;
+        this._next = null;
+    }
 
-        get next() {
-            return this._next;
-        }
+    get next() {
+        return this._next;
+    }
 
-        set next(value) {
-            this._next = value;
-        }
+    set next(value) {
+        this._next = value;
+    }
 
-        get value() {
-            return this._value;
+    get value() {
+        return this._value;
+    }
+}
+
+class LinkedList {
+    constructor(value) {
+        this._head = null;
+        this._size = 0;
+
+        if (value !== undefined) {
+            if (Array.isArray(value)) {
+                for(let element of value)
+                    this.append(element);
+            }else{
+                this.append(value);
+            }
         }
     }
 
-    class LinkedList {
-        constructor(value) {
-            this._head = null;
-            this._size = 0;
+    get size() {
+        return this._size;
+    }
 
-            if (value !== undefined) {
-                let array = value;
-                if (!Array.isArray(value)) {
-                    array = [value];
-                }
+    get isEmpty() {
+        return this.size === 0;
+    }
 
-                let head = new LinkedListNode(array[0]);
-                let previousNode = head;
+    get head() {
+        return this._head;
+    }
 
-                for (let index = 1; index < array.length; index++) {
-                    let node = new LinkedListNode(array[index]);
-                    previousNode.next = node;
-                    previousNode = node;
-                }
+    set head(value) {
+        this._head = value;
+    }
 
-                this._head = head;
-                this._size = array.length;
-            }
+    get(index) {
+        let [currentNode,_] = this._getByIndex(index);
+        return currentNode.value;
+    }
+
+    _getByIndex(index) {
+        let previousNode = null;
+        let currentNode = this.head;
+        while (index > 0) {
+            previousNode = currentNode;
+            currentNode = currentNode.next;
+            index--;
         }
 
-        get size() {
-            return this._size;
+        return [currentNode, previousNode];
+    }
+
+    insertAt(value, index) {
+        let [_,previous] = this._getByIndex(index);
+        this.insert(previous, value);
+    }
+
+    insert(node, value) {
+        let newNode = new LinkedListNode(value);
+        if (node == null) {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        else {
+            let next = node.next;
+            node.next = newNode;
+            node.next.next = next;
         }
 
-        get isEmpty() {
-            return this.size === 0;
+        this._size = this._size + 1;
+        return node;
+    }
+
+    add(value){
+        this.insert(null, value);
+    }
+
+    append(value) {
+        this.insertAt(value, this._size);
+    }
+
+    remove(index) {
+        let [currentNode, previousNode] = this._getByIndex(index);
+
+        if (previousNode !== null) {
+            previousNode.next = currentNode.next;
+        } else {
+            this._head = currentNode.next;
         }
 
-        get head() {
-            return this._head;
-        }
+        this._size = this._size - 1;
+    }
 
-        add(value) {
-            let newNode = new LinkedListNode(value);
-            let node = this.head;
-            if (node === null) {
-                this._head = newNode;
-            } else {
-                while (node.next !== null) {
-                    node = node.next;
-                }
-                node.next = newNode;
-            }
-
-            this._size = this._size + 1;
-        }
-
-        get(index) {
-            let currentNode = this._getByIndex(index,
-                (current, previous) => current
-            );
-
-            return currentNode.value;
-        }
-
-        remove(index) {
-            let [currentNode, previousNode] = this._getByIndex(index,
-                (current, previous) => [current,previous]   
-            );
-
-            if (previousNode !== null) {
-                previousNode.next = currentNode.next;
-            } else {
-                this._head = currentNode.next;
-            }
-
-            this._size = this._size - 1;
-        }
-
-        _getByIndex(index, action) {
-            let previousNode = null;
-            let currentNode = this.head;
-            while (index > 0) {
-                previousNode = currentNode;
-                currentNode = currentNode.next;
-                index--;
-            }
-
-            return action(currentNode, previousNode);
-        }
 
         *values() {
             let current = this.head;
@@ -114,4 +118,12 @@
         [Symbol.iterator]() {
             return this.values();
         }
+
+    toArray(){
+        let array = [];
+        for(let node of this)
+            array.push(node);
+
+        return array;
     }
+}
